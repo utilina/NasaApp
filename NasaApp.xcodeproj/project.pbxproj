@@ -12,6 +12,12 @@
 		95ED687E25812CF800C43B78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED687D25812CF800C43B78 /* ViewController.swift */; };
 		95ED688325812CFD00C43B78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95ED688225812CFD00C43B78 /* Assets.xcassets */; };
 		95ED688625812CFD00C43B78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95ED688425812CFD00C43B78 /* LaunchScreen.storyboard */; };
+		95ED68942581319000C43B78 /* NasaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68932581319000C43B78 /* NasaVC.swift */; };
+		95ED689D258133A400C43B78 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED689C258133A400C43B78 /* UIViewExt.swift */; };
+		95ED68A0258136C300C43B78 /* NasaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED689F258136C300C43B78 /* NasaCell.swift */; };
+		95ED68A425813BB800C43B78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68A325813BB800C43B78 /* Constants.swift */; };
+		95ED68A72581447000C43B78 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68A62581447000C43B78 /* NetworkManager.swift */; };
+		95ED68AB2581449500C43B78 /* NasaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68AA2581449500C43B78 /* NasaModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		95ED688225812CFD00C43B78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95ED688525812CFD00C43B78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95ED688725812CFD00C43B78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95ED68932581319000C43B78 /* NasaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaVC.swift; sourceTree = "<group>"; };
+		95ED689C258133A400C43B78 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
+		95ED689F258136C300C43B78 /* NasaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaCell.swift; sourceTree = "<group>"; };
+		95ED68A325813BB800C43B78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		95ED68A62581447000C43B78 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		95ED68AA2581449500C43B78 /* NasaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +66,44 @@
 		95ED687825812CF800C43B78 /* NasaApp */ = {
 			isa = PBXGroup;
 			children = (
-				95ED687925812CF800C43B78 /* AppDelegate.swift */,
-				95ED687B25812CF800C43B78 /* SceneDelegate.swift */,
+				95ED68A62581447000C43B78 /* NetworkManager.swift */,
+				95ED68A92581448200C43B78 /* Model */,
+				95ED68932581319000C43B78 /* NasaVC.swift */,
+				95ED689F258136C300C43B78 /* NasaCell.swift */,
 				95ED687D25812CF800C43B78 /* ViewController.swift */,
-				95ED688225812CFD00C43B78 /* Assets.xcassets */,
-				95ED688425812CFD00C43B78 /* LaunchScreen.storyboard */,
+				95ED68972581336B00C43B78 /* Extensions-Utilities */,
+				95ED68962581335200C43B78 /* Supporting */,
 				95ED688725812CFD00C43B78 /* Info.plist */,
 			);
 			path = NasaApp;
+			sourceTree = "<group>";
+		};
+		95ED68962581335200C43B78 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				95ED687925812CF800C43B78 /* AppDelegate.swift */,
+				95ED687B25812CF800C43B78 /* SceneDelegate.swift */,
+				95ED688225812CFD00C43B78 /* Assets.xcassets */,
+				95ED688425812CFD00C43B78 /* LaunchScreen.storyboard */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		95ED68972581336B00C43B78 /* Extensions-Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				95ED689C258133A400C43B78 /* UIViewExt.swift */,
+				95ED68A325813BB800C43B78 /* Constants.swift */,
+			);
+			path = "Extensions-Utilities";
+			sourceTree = "<group>";
+		};
+		95ED68A92581448200C43B78 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				95ED68AA2581449500C43B78 /* NasaModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,8 +175,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95ED689D258133A400C43B78 /* UIViewExt.swift in Sources */,
+				95ED68AB2581449500C43B78 /* NasaModel.swift in Sources */,
 				95ED687E25812CF800C43B78 /* ViewController.swift in Sources */,
 				95ED687A25812CF800C43B78 /* AppDelegate.swift in Sources */,
+				95ED68942581319000C43B78 /* NasaVC.swift in Sources */,
+				95ED68A72581447000C43B78 /* NetworkManager.swift in Sources */,
+				95ED68A425813BB800C43B78 /* Constants.swift in Sources */,
+				95ED68A0258136C300C43B78 /* NasaCell.swift in Sources */,
 				95ED687C25812CF800C43B78 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
