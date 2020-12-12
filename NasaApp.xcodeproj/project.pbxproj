@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		95ED687A25812CF800C43B78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED687925812CF800C43B78 /* AppDelegate.swift */; };
 		95ED687C25812CF800C43B78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED687B25812CF800C43B78 /* SceneDelegate.swift */; };
-		95ED687E25812CF800C43B78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED687D25812CF800C43B78 /* ViewController.swift */; };
+		95ED687E25812CF800C43B78 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED687D25812CF800C43B78 /* DetailViewController.swift */; };
 		95ED688325812CFD00C43B78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95ED688225812CFD00C43B78 /* Assets.xcassets */; };
 		95ED688625812CFD00C43B78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95ED688425812CFD00C43B78 /* LaunchScreen.storyboard */; };
 		95ED68942581319000C43B78 /* NasaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68932581319000C43B78 /* NasaVC.swift */; };
@@ -17,14 +17,17 @@
 		95ED68A0258136C300C43B78 /* NasaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED689F258136C300C43B78 /* NasaCell.swift */; };
 		95ED68A425813BB800C43B78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68A325813BB800C43B78 /* Constants.swift */; };
 		95ED68A72581447000C43B78 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68A62581447000C43B78 /* NetworkManager.swift */; };
-		95ED68AB2581449500C43B78 /* NasaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68AA2581449500C43B78 /* NasaModel.swift */; };
+		95ED68AB2581449500C43B78 /* NasaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68AA2581449500C43B78 /* NasaAPI.swift */; };
+		95ED68BB2582900200C43B78 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68BA2582900200C43B78 /* LoadImage.swift */; };
+		95ED68BF2583D2EA00C43B78 /* NasaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68BE2583D2EA00C43B78 /* NasaModel.swift */; };
+		95ED69132585184600C43B78 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED69122585184600C43B78 /* Error.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		95ED687625812CF800C43B78 /* NasaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95ED687925812CF800C43B78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95ED687B25812CF800C43B78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		95ED687D25812CF800C43B78 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		95ED687D25812CF800C43B78 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		95ED688225812CFD00C43B78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95ED688525812CFD00C43B78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95ED688725812CFD00C43B78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -33,7 +36,10 @@
 		95ED689F258136C300C43B78 /* NasaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaCell.swift; sourceTree = "<group>"; };
 		95ED68A325813BB800C43B78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		95ED68A62581447000C43B78 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		95ED68AA2581449500C43B78 /* NasaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaModel.swift; sourceTree = "<group>"; };
+		95ED68AA2581449500C43B78 /* NasaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaAPI.swift; sourceTree = "<group>"; };
+		95ED68BA2582900200C43B78 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
+		95ED68BE2583D2EA00C43B78 /* NasaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaModel.swift; sourceTree = "<group>"; };
+		95ED69122585184600C43B78 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,10 +73,9 @@
 			isa = PBXGroup;
 			children = (
 				95ED68A62581447000C43B78 /* NetworkManager.swift */,
+				95ED68BA2582900200C43B78 /* LoadImage.swift */,
 				95ED68A92581448200C43B78 /* Model */,
-				95ED68932581319000C43B78 /* NasaVC.swift */,
-				95ED689F258136C300C43B78 /* NasaCell.swift */,
-				95ED687D25812CF800C43B78 /* ViewController.swift */,
+				95ED68B52582807300C43B78 /* Controller */,
 				95ED68972581336B00C43B78 /* Extensions-Utilities */,
 				95ED68962581335200C43B78 /* Supporting */,
 				95ED688725812CFD00C43B78 /* Info.plist */,
@@ -101,9 +106,21 @@
 		95ED68A92581448200C43B78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				95ED68AA2581449500C43B78 /* NasaModel.swift */,
+				95ED68AA2581449500C43B78 /* NasaAPI.swift */,
+				95ED68BE2583D2EA00C43B78 /* NasaModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		95ED68B52582807300C43B78 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				95ED68932581319000C43B78 /* NasaVC.swift */,
+				95ED689F258136C300C43B78 /* NasaCell.swift */,
+				95ED69122585184600C43B78 /* Error.swift */,
+				95ED687D25812CF800C43B78 /* DetailViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,13 +193,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				95ED689D258133A400C43B78 /* UIViewExt.swift in Sources */,
-				95ED68AB2581449500C43B78 /* NasaModel.swift in Sources */,
-				95ED687E25812CF800C43B78 /* ViewController.swift in Sources */,
+				95ED68BB2582900200C43B78 /* LoadImage.swift in Sources */,
+				95ED68AB2581449500C43B78 /* NasaAPI.swift in Sources */,
+				95ED687E25812CF800C43B78 /* DetailViewController.swift in Sources */,
 				95ED687A25812CF800C43B78 /* AppDelegate.swift in Sources */,
 				95ED68942581319000C43B78 /* NasaVC.swift in Sources */,
 				95ED68A72581447000C43B78 /* NetworkManager.swift in Sources */,
+				95ED68BF2583D2EA00C43B78 /* NasaModel.swift in Sources */,
 				95ED68A425813BB800C43B78 /* Constants.swift in Sources */,
 				95ED68A0258136C300C43B78 /* NasaCell.swift in Sources */,
+				95ED69132585184600C43B78 /* Error.swift in Sources */,
 				95ED687C25812CF800C43B78 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

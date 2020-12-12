@@ -8,5 +8,5 @@
 import Foundation
 
 struct Identifier {
-    static let nasaCell = "NasaCell"
+    static let nasaCell = "nasaCell"
 }
