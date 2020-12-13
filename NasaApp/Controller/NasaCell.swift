@@ -16,6 +16,7 @@ class NasaCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = .black
         addSubview(nasaImage)
         addSubview(nasaLabel)
         addSubview(nasaSpinner)
@@ -45,6 +46,7 @@ class NasaCell: UITableViewCell {
     func configureLabel() {
         nasaLabel.numberOfLines = 0
         nasaLabel.adjustsFontSizeToFitWidth = true
+        nasaLabel.textColor = .white
     }
     
     func configureSpinner() {
@@ -53,7 +55,7 @@ class NasaCell: UITableViewCell {
     }
     
     func configurePlayImage() {
-        playImage.image = UIImage(systemName: "play" )
+        playImage.image = UIImage(systemName: "play.fill" )
         playImage.tintColor = .white
         playImage.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
         playImage.layer.cornerRadius = frame.height / 5
@@ -89,7 +91,7 @@ class NasaCell: UITableViewCell {
         playImage.translatesAutoresizingMaskIntoConstraints = false
         playImage.centerYAnchor.constraint(equalTo: nasaImage.centerYAnchor).isActive = true
         playImage.centerXAnchor.constraint(equalTo: nasaImage.centerXAnchor).isActive = true
-        playImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        playImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        playImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        playImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
 }

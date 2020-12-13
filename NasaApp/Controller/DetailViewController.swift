@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVKit
 
 class DetailViewController: UIViewController {
     
@@ -36,9 +37,12 @@ class DetailViewController: UIViewController {
     
     private var playButton: UIButton = {
         let bttn = UIButton()
-        bttn.setImage(UIImage(systemName: "play"), for: .normal)
         bttn.tintColor = .white
         bttn.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        bttn.layer.cornerRadius = 5
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .bold, scale: .large)
+        let largeBoldDoc = UIImage(systemName: "play.fill", withConfiguration: largeConfig)
+        bttn.setImage(largeBoldDoc, for: .normal)
         return bttn
     }()
     
@@ -80,6 +84,22 @@ class DetailViewController: UIViewController {
     }
     
     @objc func buttonPressed(_ sender: UIButton) {
+        if nasaModel != nil {
+            if let videoURL = nasaModel!.videoURL {
+                let formatedURL = videoURL.replacingOccurrences(of: " ", with: "%20")
+                let mp4URL = formatedURL.replacingOccurrences(of: ".srt", with: "~orig.mp4")
+                print(mp4URL)
+                if let url = URL(string: mp4URL) {
+                    print("button pressfdsfsdfsded")
+                    let video = AVPlayer(url: url)
+                    let videoPlayer = AVPlayerViewController()
+                    videoPlayer.player = video
+                    self.present(videoPlayer, animated: true, completion: {
+                        video.play()
+                    })
+                }
+            }
+        }
         print("button pressed")
     }
     
@@ -114,8 +134,8 @@ class DetailViewController: UIViewController {
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.centerYAnchor.constraint(equalTo: imageNasa.centerYAnchor).isActive = true
         playButton.centerXAnchor.constraint(equalTo: imageNasa.centerXAnchor).isActive = true
-        playButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        playButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        playButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        playButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     

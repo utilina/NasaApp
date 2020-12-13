@@ -29,7 +29,7 @@ struct Detail: Decodable {
 }
 
 struct Ref: Decodable {
-    let href: String
+    let href: String?
 }
 
 struct TotalHits: Decodable {

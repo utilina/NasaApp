@@ -12,6 +12,7 @@ class ErrorCell: UITableViewCell {
     var label: UILabel = {
         let lbl = UILabel()
         lbl.textAlignment = .center
+        lbl.textColor = .white
         return lbl
     }()
     
@@ -19,6 +20,7 @@ class ErrorCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(label)
         setLabelConstraints()
+        self.backgroundColor = .black
     }
     
     required init?(coder: NSCoder) {

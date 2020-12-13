@@ -18,11 +18,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
         let navBar = UINavigationController(rootViewController: NasaVC())
-        navBar.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
-        navBar.navigationBar.backItem?.backBarButtonItem?.tintColor = .white
+        navBarSettings(navBar: navBar)
         window?.rootViewController = navBar
         window?.makeKeyAndVisible()
 
+    }
+    
+    func navBarSettings(navBar: UINavigationController) {
+        navBar.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        navBar.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        navBar.navigationBar.barTintColor = .black
+        navBar.navigationBar.backItem?.backBarButtonItem?.tintColor = .white
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

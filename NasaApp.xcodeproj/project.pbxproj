@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9545F1E8258691CC00DF9B1E /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9545F1E7258691CC00DF9B1E /* LoadingCell.swift */; };
 		95ED687A25812CF800C43B78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED687925812CF800C43B78 /* AppDelegate.swift */; };
 		95ED687C25812CF800C43B78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED687B25812CF800C43B78 /* SceneDelegate.swift */; };
 		95ED687E25812CF800C43B78 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED687D25812CF800C43B78 /* DetailViewController.swift */; };
@@ -20,12 +21,13 @@
 		95ED68AB2581449500C43B78 /* NasaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68AA2581449500C43B78 /* NasaAPI.swift */; };
 		95ED68BB2582900200C43B78 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68BA2582900200C43B78 /* LoadImage.swift */; };
 		95ED68BF2583D2EA00C43B78 /* NasaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED68BE2583D2EA00C43B78 /* NasaModel.swift */; };
-		95ED69132585184600C43B78 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED69122585184600C43B78 /* Error.swift */; };
+		95ED69132585184600C43B78 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED69122585184600C43B78 /* ErrorCell.swift */; };
 		95ED691F2585304D00C43B78 /* ResponseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED691E2585304C00C43B78 /* ResponseDecodable.swift */; };
 		95ED692225864E2600C43B78 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED692125864E2500C43B78 /* StringExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9545F1E7258691CC00DF9B1E /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		95ED687625812CF800C43B78 /* NasaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95ED687925812CF800C43B78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95ED687B25812CF800C43B78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +43,7 @@
 		95ED68AA2581449500C43B78 /* NasaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaAPI.swift; sourceTree = "<group>"; };
 		95ED68BA2582900200C43B78 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		95ED68BE2583D2EA00C43B78 /* NasaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaModel.swift; sourceTree = "<group>"; };
-		95ED69122585184600C43B78 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		95ED69122585184600C43B78 /* ErrorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
 		95ED691E2585304C00C43B78 /* ResponseDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDecodable.swift; sourceTree = "<group>"; };
 		95ED692125864E2500C43B78 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,7 +123,8 @@
 			children = (
 				95ED68932581319000C43B78 /* NasaVC.swift */,
 				95ED689F258136C300C43B78 /* NasaCell.swift */,
-				95ED69122585184600C43B78 /* Error.swift */,
+				95ED69122585184600C43B78 /* ErrorCell.swift */,
+				9545F1E7258691CC00DF9B1E /* LoadingCell.swift */,
 				95ED687D25812CF800C43B78 /* DetailViewController.swift */,
 			);
 			path = Controller;
@@ -215,10 +218,11 @@
 				95ED68A72581447000C43B78 /* NetworkManager.swift in Sources */,
 				95ED68BF2583D2EA00C43B78 /* NasaModel.swift in Sources */,
 				95ED68A425813BB800C43B78 /* Constants.swift in Sources */,
+				9545F1E8258691CC00DF9B1E /* LoadingCell.swift in Sources */,
 				95ED691F2585304D00C43B78 /* ResponseDecodable.swift in Sources */,
 				95ED692225864E2600C43B78 /* StringExt.swift in Sources */,
 				95ED68A0258136C300C43B78 /* NasaCell.swift in Sources */,
-				95ED69132585184600C43B78 /* Error.swift in Sources */,
+				95ED69132585184600C43B78 /* ErrorCell.swift in Sources */,
 				95ED687C25812CF800C43B78 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
