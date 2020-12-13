@@ -23,13 +23,13 @@ struct NasaItem: Decodable {
 
 struct Detail: Decodable {
     let title: String?
-    let media_type: String?
+    let media_type: String
     let date_created: String?
     let description: String?
 }
 
 struct Ref: Decodable {
-    let href: String?
+    let href: String
 }
 
 struct TotalHits: Decodable {

@@ -12,20 +12,24 @@ class NasaCell: UITableViewCell {
     var nasaImage = UIImageView()
     var nasaLabel = UILabel()
     var nasaSpinner = UIActivityIndicatorView()
+    var playImage = UIImageView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(nasaImage)
         addSubview(nasaLabel)
         addSubview(nasaSpinner)
+        addSubview(playImage)
         
         configureLabel()
         configureImageView()
         configureSpinner()
+        configurePlayImage()
         
         setImageConstraints()
         setLabelConstraints()
         setSpinnerConstraints()
+        setPlayImageConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -45,7 +49,16 @@ class NasaCell: UITableViewCell {
     
     func configureSpinner() {
         nasaSpinner.startAnimating()
-        nasaSpinner.style = .large
+        nasaSpinner.style = .medium
+    }
+    
+    func configurePlayImage() {
+        playImage.image = UIImage(systemName: "play" )
+        playImage.tintColor = .white
+        playImage.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        playImage.layer.cornerRadius = frame.height / 5
+        playImage.contentMode = .scaleAspectFit
+        playImage.isHidden = true
     }
 
     func setImageConstraints() {
@@ -70,5 +83,13 @@ class NasaCell: UITableViewCell {
         nasaSpinner.centerXAnchor.constraint(equalTo: nasaImage.centerXAnchor).isActive = true
         nasaSpinner.heightAnchor.constraint(equalToConstant: 10).isActive = true
         nasaSpinner.widthAnchor.constraint(equalToConstant: 10).isActive = true
+    }
+    
+    func setPlayImageConstraints() {
+        playImage.translatesAutoresizingMaskIntoConstraints = false
+        playImage.centerYAnchor.constraint(equalTo: nasaImage.centerYAnchor).isActive = true
+        playImage.centerXAnchor.constraint(equalTo: nasaImage.centerXAnchor).isActive = true
+        playImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        playImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }

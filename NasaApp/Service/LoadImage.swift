@@ -15,39 +15,43 @@ class ImageLoader {
     
     func imageForUrl(urlString: String, completionHandler: @escaping (_ image: UIImage?, _ url: String) -> ()) {
         
+        let formatedUrl = urlString.replacingOccurrences(of: " ", with: "%20")
+        
         DispatchQueue.global(qos: .background).async {
         
-            let data: NSData? = self.cache.object(forKey: urlString as NSString) as? NSData
+            let data: NSData? = self.cache.object(forKey: formatedUrl as NSString) as? NSData
             
             if let goodData = data {
                 let image = UIImage(data: goodData as Data)
                 DispatchQueue.main.async {
-                    completionHandler(image, urlString)
+                    completionHandler(image, formatedUrl)
                 }
                 return
             }
-            guard let url = URL(string: urlString) else { return }
-            
+            guard let url = URL(string: formatedUrl) else { //print("cannot create url\(urlString)")
+                return }
+            //print("create url \(url)")
             let session = URLSession.shared
             let request = URLRequest(url: url)
             
             session.dataTask(with: request) { data, response, error in
                 
                 if (error != nil) {
-                    completionHandler(nil, urlString)
+                    completionHandler(nil, formatedUrl)
                     return
                 }
                 
                 if let data = data{
                     let image = UIImage(data: data)
-                    self.cache.setObject(data as AnyObject, forKey: urlString as NSString)
+                    self.cache.setObject(data as AnyObject, forKey: formatedUrl as NSString)
                     DispatchQueue.main.async {
-                        completionHandler(image, urlString)
+                        completionHandler(image, formatedUrl)
                     }
                 }
             }.resume()
             
         }
+       
     }
     
     class var sharedLoader : ImageLoader {

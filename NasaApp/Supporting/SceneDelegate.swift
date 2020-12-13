@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
         let navBar = UINavigationController(rootViewController: NasaVC())
-        navBar.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.green]
+        navBar.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
         navBar.navigationBar.backItem?.backBarButtonItem?.tintColor = .white
         window?.rootViewController = navBar
         window?.makeKeyAndVisible()

@@ -9,4 +9,5 @@ import Foundation
 
 struct Identifier {
     static let nasaCell = "nasaCell"
+    static let errorCell = "errorCell"
 }

@@ -12,8 +12,8 @@ class NasaVC: UIViewController {
     var tableView: UITableView = {
         let tv = UITableView()
         tv.rowHeight = 110
-        tv.register(NasaCell.self, forCellReuseIdentifier: "nasaCell")
-        tv.register(ErrorCell.self, forCellReuseIdentifier: "errorCell")
+        tv.register(NasaCell.self, forCellReuseIdentifier: Identifier.nasaCell)
+        tv.register(ErrorCell.self, forCellReuseIdentifier: Identifier.errorCell)
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
     }()
@@ -24,14 +24,14 @@ class NasaVC: UIViewController {
         return sc
     }()
     
-    var networkManager = NetworkManager()
-    var imageLoader = ImageLoader()
+    var networkManager: Networking = NetworkManager()
     var errorStatus: NetworkError?
     
     var nasaArray = [NasaItem]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                print(self.nasaArray[0].links[0].href)
             }
         }
     }
@@ -64,7 +64,7 @@ class NasaVC: UIViewController {
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
     
-    private func fetchData(urlString: String = "nebula") {
+    private func fetchData(urlString: String = "earth") {
         networkManager.request(request: urlString) { [weak self] result in
             switch result {
             case .success(let nasa):
@@ -93,29 +93,35 @@ extension NasaVC: UITableViewDelegate, UITableViewDataSource {
         
         switch errorStatus {
         case .canNotProcessData:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "errorCell") as! ErrorCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.errorCell) as! ErrorCell
             cell.label.text = "canNotProcessData"
             return cell
         case .noDataAvilable:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "errorCell") as! ErrorCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.errorCell) as! ErrorCell
             cell.label.text = "noDataAvilable"
             return cell
         case .notFound:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "errorCell") as! ErrorCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.errorCell) as! ErrorCell
             cell.label.text = "notFound"
             return cell
         case .none:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "nasaCell") as! NasaCell
-            cell.nasaImage.image = nil
-            cell.nasaSpinner.startAnimating()
-            if let imageURL = nasaArray[indexPath.row].links[0].href {
-                imageLoader.imageForUrl(urlString: imageURL) { (image, string) in
-                    cell.nasaImage.image = image
-                    cell.nasaSpinner.stopAnimating()
-                }}
-            cell.nasaLabel.text = nasaArray[indexPath.row].data[0].title
-            return cell
+            if nasaArray.count != 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.nasaCell) as! NasaCell
+                cell.nasaImage.image = nil
+                cell.nasaSpinner.startAnimating()
+                let imageURL = nasaArray[indexPath.row].links[0].href
+                    ImageLoader.sharedLoader.imageForUrl(urlString: imageURL) { (image, string) in
+                        cell.nasaImage.image = image
+                        cell.nasaSpinner.stopAnimating()
+                        if self.nasaArray[indexPath.row].data[0].media_type == "video" {
+                            cell.playImage.isHidden = false
+                        }
+                    }
+                cell.nasaLabel.text = nasaArray[indexPath.row].data[0].title
+                return cell
+            }
         }
+        return UITableViewCell()
     }
     
     //MARK: - TableView delegate method
@@ -124,15 +130,16 @@ extension NasaVC: UITableViewDelegate, UITableViewDataSource {
         // Pushing to the next view controller
         let detailViewController = DetailViewController()
         navigationController?.pushViewController(detailViewController, animated: true)
-        // Get picked country code
+        // Create nasaModel
         guard let title = nasaArray[indexPath.row].data[0].title else { return }
-        guard let link = nasaArray[indexPath.row].links[0].href else { return }
-        guard let mediaType = nasaArray[indexPath.row].data[0].media_type else { return }
+        let link = nasaArray[indexPath.row].links[0].href
+        let mediaType = nasaArray[indexPath.row].data[0].media_type
         guard let description = nasaArray[indexPath.row].data[0].description else { return }
         guard let date = nasaArray[indexPath.row].data[0].date_created else { return }
         let nasaModel = NasaModel(title: title, imageURL: link, mediaType: mediaType, date: date, description: description)
         detailViewController.nasaModel = nasaModel
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
 }
 
@@ -143,10 +150,10 @@ extension NasaVC: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         errorStatus = .none
-        if let country = searchBar.text {
+        if let nasaPost = searchBar.text {
             // Check if there is some text
-            if country != "" {
-                let encodeNasa = country.replacingOccurrences(of: " ", with: "%20")
+            if nasaPost != "" {
+                let encodeNasa = nasaPost.replacingOccurrences(of: " ", with: "%20")
                 // Request country
                 fetchData(urlString: encodeNasa)
                 // If there is no text return all countries

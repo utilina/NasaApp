@@ -19,10 +19,10 @@ protocol Networking {
 
 class NetworkManager: Networking {
     
-    let baseUrl = "https://images-api.nasa.gov/search?media_type=image&q="
+    let baseUrl = "https://images-api.nasa.gov/search?&q="
     
     
-    func request(request: String = "nebula", completion: @escaping(Result<[NasaItem], NetworkError>) -> Void) {
+    func request(request: String, completion: @escaping(Result<[NasaItem], NetworkError>) -> Void) {
         let requestedUrl = baseUrl + request
         print(requestedUrl)
         guard let url = URL(string: requestedUrl) else { return }
@@ -38,37 +38,20 @@ class NetworkManager: Networking {
                 completion(.failure(.noDataAvilable))
                 return
             }
-            guard let nasaModel = self.parseJSON(jsonData) else {
+            guard let decodedData = ResponseDecodable(data: jsonData).decode(NasaAPI.self) else {
                 completion(.failure(.canNotProcessData))
                 return
             }
+            let nasaModel = decodedData.collection.items
             if nasaModel as NSArray == [] {
                 completion(.failure(.notFound))
+                
             }
             completion(.success(nasaModel))
         }
         dataTask.resume()
 
     }
-    
-    func parseJSON(_ nasaData: Data) -> [NasaItem]? {
-        
-        //let nasaArray = [Nasa]()
-        let decoder = JSONDecoder()
-        do {
-            let decodedData = try decoder.decode(NasaAPI.self, from: nasaData)
-            if decodedData.collection.metadata.total_hits != 0 {
-                //print(decodedData)
-                return decodedData.collection.items
-            } else {
-                return []
-            }
-        } catch {
-            print(error.localizedDescription)
-            return nil
-        }
-    }
-    
 
 }
 

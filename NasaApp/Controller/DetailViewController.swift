@@ -34,13 +34,19 @@ class DetailViewController: UIViewController {
         return textv
     }()
     
+    private var playButton: UIButton = {
+        let bttn = UIButton()
+        bttn.setImage(UIImage(systemName: "play"), for: .normal)
+        bttn.tintColor = .white
+        bttn.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        return bttn
+    }()
+    
     var nasaModel: NasaModel? {
         didSet{
            updateInterface()
         }
     }
-    
-    private var imageLoader = ImageLoader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,20 +54,33 @@ class DetailViewController: UIViewController {
         view.addSubview(label)
         view.addSubview(imageNasa)
         view.addSubview(textDescription)
+        view.addSubview(playButton)
         setLabelLayout()
         setImageLayout()
         setDesriptionLayout()
+        setButtonLayout()
+        playButton.addTarget(self, action: #selector(buttonPressed(_: )), for: .touchUpInside)
     }
     
     private func updateInterface() {
         //Update title
         label.text = nasaModel?.title
         //Update image
-        imageLoader.imageForUrl(urlString: nasaModel!.imageURL) { (image, string) in
+        
+        ImageLoader.sharedLoader.imageForUrl(urlString: nasaModel!.imageURL) { (image, string) in
             self.imageNasa.image = image
         }
         //Update description
         textDescription.text = nasaModel?.description
+        // Play button
+        if nasaModel?.mediaType == "image" {
+            playButton.isHidden = true
+            playButton.isEnabled = false
+        }
+    }
+    
+    @objc func buttonPressed(_ sender: UIButton) {
+        print("button pressed")
     }
     
 
@@ -77,8 +96,8 @@ class DetailViewController: UIViewController {
     private func setLabelLayout() {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.topAnchor.constraint(equalTo: imageNasa.bottomAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        label.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         label.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
@@ -90,6 +109,18 @@ class DetailViewController: UIViewController {
         textDescription.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
     }
+    
+    private func setButtonLayout() {
+        playButton.translatesAutoresizingMaskIntoConstraints = false
+        playButton.centerYAnchor.constraint(equalTo: imageNasa.centerYAnchor).isActive = true
+        playButton.centerXAnchor.constraint(equalTo: imageNasa.centerXAnchor).isActive = true
+        playButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        playButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+    
+    
+    
+    
     
 
 }
