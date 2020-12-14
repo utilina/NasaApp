@@ -10,7 +10,6 @@ import Foundation
 struct NasaModel {
     let title: String
     let imageURL: String
-    let videoURL: String?
     let mediaType: String
     let date: String
     let description: String

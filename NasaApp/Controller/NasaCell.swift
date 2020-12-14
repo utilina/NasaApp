@@ -37,6 +37,11 @@ class NasaCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func clearImages() {
+        nasaImage.image = nil
+        playImage.isHidden = true
+    }
+    
     func configureImageView() {
         nasaImage.clipsToBounds = true
         nasaImage.backgroundColor = .clear
@@ -56,6 +61,7 @@ class NasaCell: UITableViewCell {
     
     func configurePlayImage() {
         playImage.image = UIImage(systemName: "play.fill" )
+        playImage.isHidden = true
         playImage.tintColor = .white
         playImage.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
         playImage.layer.cornerRadius = frame.height / 5

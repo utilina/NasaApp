@@ -10,7 +10,7 @@ import AVKit
 
 class DetailViewController: UIViewController {
     
-    private var label: UILabel = {
+    var label: UILabel = {
         let lbl = UILabel()
         lbl.textAlignment = .center
         lbl.textColor = .white
@@ -18,13 +18,13 @@ class DetailViewController: UIViewController {
         return lbl
     }()
     
-    private var imageNasa: UIImageView = {
+    var imageNasa: UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFit
         return img
     }()
     
-    private var textDescription: UITextView = {
+    var textDescription: UITextView = {
         let textv = UITextView()
         textv.isEditable = false
         textv.isScrollEnabled = true
@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
         return textv
     }()
     
-    private var playButton: UIButton = {
+    var playButton: UIButton = {
         let bttn = UIButton()
         bttn.tintColor = .white
         bttn.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
@@ -48,13 +48,14 @@ class DetailViewController: UIViewController {
     
     var nasaModel: NasaModel? {
         didSet{
-           updateInterface()
+            updateInterface()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        // Adding subviews and constraints
         view.addSubview(label)
         view.addSubview(imageNasa)
         view.addSubview(textDescription)
@@ -70,7 +71,6 @@ class DetailViewController: UIViewController {
         //Update title
         label.text = nasaModel?.title
         //Update image
-        
         ImageLoader.sharedLoader.imageForUrl(urlString: nasaModel!.imageURL) { (image, string) in
             self.imageNasa.image = image
         }
@@ -85,64 +85,22 @@ class DetailViewController: UIViewController {
     
     @objc func buttonPressed(_ sender: UIButton) {
         if nasaModel != nil {
-            if let videoURL = nasaModel!.videoURL {
-                let formatedURL = videoURL.replacingOccurrences(of: " ", with: "%20")
-                let mp4URL = formatedURL.replacingOccurrences(of: ".srt", with: "~orig.mp4")
-                print(mp4URL)
-                if let url = URL(string: mp4URL) {
-                    print("button pressfdsfsdfsded")
-                    let video = AVPlayer(url: url)
-                    let videoPlayer = AVPlayerViewController()
-                    videoPlayer.player = video
-                    self.present(videoPlayer, animated: true, completion: {
-                        video.play()
-                    })
-                }
+            let nasaURL = nasaModel!.imageURL
+            // Create video urlstring from image url
+            let formatedURL = nasaURL.replacingOccurrences(of: " ", with: "%20")
+            let videoURL = formatedURL.replacingOccurrences(of: "thumb.jpg", with: "orig.mp4")
+            // Create url
+            if let url = URL(string: videoURL) {
+                // Create Video Player
+                let video = AVPlayer(url: url)
+                let videoPlayer = AVPlayerViewController()
+                videoPlayer.player = video
+                self.present(videoPlayer, animated: true, completion: {
+                    video.play()
+                })
             }
         }
-        print("button pressed")
     }
-    
-
-    private func setImageLayout() {
-        imageNasa.translatesAutoresizingMaskIntoConstraints = false
-        imageNasa.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        imageNasa.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        imageNasa.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        imageNasa.heightAnchor.constraint(equalToConstant: 250).isActive = true
-        
-    }
-    
-    private func setLabelLayout() {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: imageNasa.bottomAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-    
-    private func setDesriptionLayout() {
-        textDescription.translatesAutoresizingMaskIntoConstraints = false
-        textDescription.topAnchor.constraint(equalTo: label.bottomAnchor).isActive = true
-        textDescription.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        textDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        textDescription.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-
-    }
-    
-    private func setButtonLayout() {
-        playButton.translatesAutoresizingMaskIntoConstraints = false
-        playButton.centerYAnchor.constraint(equalTo: imageNasa.centerYAnchor).isActive = true
-        playButton.centerXAnchor.constraint(equalTo: imageNasa.centerXAnchor).isActive = true
-        playButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        playButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-    }
-    
-    
-    
-    
-    
-
 }
 
 

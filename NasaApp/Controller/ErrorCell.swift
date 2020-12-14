@@ -23,6 +23,16 @@ class ErrorCell: UITableViewCell {
         self.backgroundColor = .black
     }
     
+    func setErrorTitle(error: NetworkError) {
+        if error == .canNotProcessData {
+            label.text = "Can not process data"
+        } else if error == .noDataAvilable {
+            label.text = "No data available"
+        } else if error == .notFound {
+            label.text = "Sorry, nothing found"
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

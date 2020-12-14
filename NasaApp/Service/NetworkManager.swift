@@ -19,7 +19,7 @@ protocol Networking {
 
 class NetworkManager: Networking {
     
-    let baseUrl = "https://images-api.nasa.gov/search?&q="
+    let baseUrl = "https://images-api.nasa.gov/search?q="
     
     
     func request(request: String, completion: @escaping(Result<[NasaItem], NetworkError>) -> Void) {
