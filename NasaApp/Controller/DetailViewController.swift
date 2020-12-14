@@ -89,7 +89,7 @@ class DetailViewController: UIViewController {
                 let nasaURL = nasaModel!.imageURL
                 // Create video urlstring from image url
                 let formatedURL = nasaURL.formatedForUrl
-                let videoURL = formatedURL.replacingOccurrences(of: "thumb.jpg", with: "orig.mp4")
+                let videoURL = formatedURL.formatedForVideoUrl
                 // Create url
                 if let url = URL(string: videoURL) {
                     // Create Video Player

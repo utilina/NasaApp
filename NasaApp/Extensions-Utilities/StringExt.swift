@@ -14,4 +14,9 @@ extension String {
         return string
     }
     
+    var formatedForVideoUrl: String {
+        let string = self.replacingOccurrences(of: "thumb.jpg", with: "orig.mp4")
+        return string
+    }
+    
 }
