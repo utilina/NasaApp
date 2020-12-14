@@ -15,7 +15,7 @@ class ImageLoader {
     
     func imageForUrl(urlString: String, completionHandler: @escaping (_ image: UIImage?, _ url: String) -> ()) {
         
-        let formatedUrl = urlString.replacingOccurrences(of: " ", with: "%20")
+        let formatedUrl = urlString.formatedForUrl
         
         DispatchQueue.global(qos: .background).async {
         
@@ -28,9 +28,7 @@ class ImageLoader {
                 }
                 return
             }
-            guard let url = URL(string: formatedUrl) else { //print("cannot create url\(urlString)")
-                return }
-            //print("create url \(url)")
+            guard let url = URL(string: formatedUrl) else { return }
             let session = URLSession.shared
             let request = URLRequest(url: url)
             
@@ -53,7 +51,7 @@ class ImageLoader {
         }
        
     }
-    
+    // Create static
     class var sharedLoader : ImageLoader {
     struct Static {
         static let instance : ImageLoader = ImageLoader()

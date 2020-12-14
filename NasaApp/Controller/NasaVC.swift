@@ -11,6 +11,7 @@ class NasaVC: UIViewController {
     
     var tableView: UITableView = {
         let tv = UITableView()
+        tv.separatorColor = .darkGray
         return tv
     }()
     
@@ -38,6 +39,7 @@ class NasaVC: UIViewController {
         super.viewDidLoad()
         // Fetch start request
         fetchData()
+        loadingStatus = true
         // Searchbar delegate
         searchBar.delegate = self
         searchBar.sizeToFit()
@@ -48,7 +50,7 @@ class NasaVC: UIViewController {
     }
     
     //MARK: - Fetching data request from nasa API
-    private func fetchData(urlString: String = "earth") {
+    private func fetchData(urlString: String = "crab") {
         networkManager.request(request: urlString) { [weak self] result in
             switch result {
             case .success(let nasa):
@@ -96,7 +98,6 @@ extension NasaVC: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.nasaCell) as! NasaCell
             // Clear cells images
             cell.clearImages()
-            
             if let imageURL = nasaArray[indexPath.row].links[0].href {
                 ImageLoader.sharedLoader.imageForUrl(urlString: imageURL) { (image, string) in
                     // Set new nasa image
@@ -133,7 +134,7 @@ extension NasaVC: UITableViewDelegate, UITableViewDataSource {
     func createNasaModel(forIndexPath indexPath: IndexPath) -> NasaModel? {
         guard let title = nasaArray[indexPath.row].data[0].title else { return nil }
         guard let link = nasaArray[indexPath.row].links[0].href else { return nil }
-        let mediaType = nasaArray[indexPath.row].data[0].media_type
+        guard let mediaType = nasaArray[indexPath.row].data[0].media_type else { return nil }
         guard let description = nasaArray[indexPath.row].data[0].description else { return nil }
         guard let date = nasaArray[indexPath.row].data[0].date_created else { return nil }
         let nasaModel = NasaModel(title: title, imageURL: link, mediaType: mediaType, date: date, description: description)
@@ -158,16 +159,12 @@ extension NasaVC: UISearchBarDelegate {
         if let nasaPost = searchBar.text {
             // Check if there is some text
             if nasaPost != "" {
-                let encodeNasa = nasaPost.replacingOccurrences(of: " ", with: "%20")
+                let encodeNasa = nasaPost.formatedForUrl
                 // Request nasa data
                 fetchData(urlString: encodeNasa)
                 // If there is no text return all countries
                 searchBar.resignFirstResponder()
             }
-        }
-        DispatchQueue.main.async {
-            // Scroll to the top
-            self.tableView.setContentOffset(CGPoint(x:-150,y:-150), animated: true)
         }
     }
     

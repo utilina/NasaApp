@@ -40,6 +40,7 @@ class NasaCell: UITableViewCell {
     func clearImages() {
         nasaImage.image = nil
         playImage.isHidden = true
+        nasaSpinner.startAnimating()
     }
     
     func configureImageView() {

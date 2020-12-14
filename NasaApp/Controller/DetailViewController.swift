@@ -79,25 +79,27 @@ class DetailViewController: UIViewController {
         // Play button
         if nasaModel?.mediaType == "image" {
             playButton.isHidden = true
-            playButton.isEnabled = false
+            playButton.isEnabled = true
         }
     }
     
     @objc func buttonPressed(_ sender: UIButton) {
         if nasaModel != nil {
-            let nasaURL = nasaModel!.imageURL
-            // Create video urlstring from image url
-            let formatedURL = nasaURL.replacingOccurrences(of: " ", with: "%20")
-            let videoURL = formatedURL.replacingOccurrences(of: "thumb.jpg", with: "orig.mp4")
-            // Create url
-            if let url = URL(string: videoURL) {
-                // Create Video Player
-                let video = AVPlayer(url: url)
-                let videoPlayer = AVPlayerViewController()
-                videoPlayer.player = video
-                self.present(videoPlayer, animated: true, completion: {
-                    video.play()
-                })
+            if nasaModel!.mediaType == "video" {
+                let nasaURL = nasaModel!.imageURL
+                // Create video urlstring from image url
+                let formatedURL = nasaURL.formatedForUrl
+                let videoURL = formatedURL.replacingOccurrences(of: "thumb.jpg", with: "orig.mp4")
+                // Create url
+                if let url = URL(string: videoURL) {
+                    // Create Video Player
+                    let video = AVPlayer(url: url)
+                    let videoPlayer = AVPlayerViewController()
+                    videoPlayer.player = video
+                    self.present(videoPlayer, animated: true, completion: {
+                        video.play()
+                    })
+                }
             }
         }
     }

@@ -2,12 +2,16 @@
 //  StringExt.swift
 //  NasaApp
 //
-//  Created by Анастасия Улитина on 13.12.2020.
+//  Created by Анастасия Улитина on 14.12.2020.
 //
 
 import Foundation
 
 extension String {
     
-
+    var formatedForUrl: String {
+        let string = self.replacingOccurrences(of: " ", with: "%20")
+        return string
+    }
+    
 }

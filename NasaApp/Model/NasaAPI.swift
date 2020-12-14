@@ -23,7 +23,7 @@ struct NasaItem: Decodable {
 
 struct Detail: Decodable {
     let title: String?
-    let media_type: String
+    let media_type: String?
     let date_created: String?
     let description: String?
 }
